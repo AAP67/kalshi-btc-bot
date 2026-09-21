@@ -14,7 +14,7 @@ def num(x):
 
 while True:
     try:
-        ts = datetime.now(timezone.utc).isoformat()
+        ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
         rows = [
             (ts, m["ticker"], m.get("event_ticker"), num(m.get("floor_strike")),
              m.get("close_time"), num(m.get("yes_bid_dollars")), num(m.get("yes_ask_dollars")),
