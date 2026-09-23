@@ -19,4 +19,10 @@ def connect():
         yes_bid REAL, yes_ask REAL, bid_size REAL, ask_size REAL)""")
     conn.execute("CREATE INDEX IF NOT EXISTS idx_kq ON kalshi_quotes(ticker, ts)")
 
+    # Multi-exchange index price
+    conn.execute("""CREATE TABLE IF NOT EXISTS index_ticks (
+        ts TEXT NOT NULL, idx REAL NOT NULL,
+        coinbase REAL, kraken REAL, bitstamp REAL)""")
+    conn.execute("CREATE INDEX IF NOT EXISTS idx_index_ts ON index_ticks(ts)")
+
     return conn
